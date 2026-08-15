@@ -1,0 +1,226 @@
+/* ================================================
+   app/static/css/style.css
+   "Correspondent" letterhead theme — ink-navy ground, brass accent,
+   glassmorphism panels. Carried over from the original Streamlit theme.
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+    --ink: #0D1420;
+    --panel: #141D30;
+    --panel-soft: #1A2440;
+    --border: #263252;
+    --brass: #D9A24B;
+    --brass-soft: #E8C084;
+    --teal: #4FB7A8;
+    --text: #E9ECF5;
+    --text-muted: #8B94B3;
+    --danger: #E06C6C;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+}
+
+.app-shell {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 18px 40px;
+}
+
+/* ---- Letterhead header ---- */
+.letterhead {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 26px;
+    background: linear-gradient(135deg, var(--panel) 0%, var(--panel-soft) 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 18px;
+}
+.letterhead-seal {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--brass-soft), var(--brass) 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 2px 10px rgba(217, 162, 75, 0.35);
+}
+.letterhead-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+.letterhead-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    margin-top: 4px;
+}
+
+.perforation {
+    height: 1px;
+    margin: 18px 0;
+    background-image: repeating-linear-gradient(to right, var(--border) 0, var(--border) 6px, transparent 6px, transparent 12px);
+}
+
+.mono-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+
+/* ---- Panels / cards ---- */
+.panel {
+    background: rgba(20, 29, 48, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+}
+
+.alert {
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+.alert-info { border-color: var(--teal); color: var(--text); background: rgba(79, 183, 168, 0.08); }
+.alert-success { border-color: var(--teal); color: var(--text); background: rgba(79, 183, 168, 0.12); }
+.alert-warning { border-color: var(--brass); color: var(--text); background: rgba(217, 162, 75, 0.1); }
+.alert-error { border-color: var(--danger); color: var(--text); background: rgba(224, 108, 108, 0.1); }
+
+/* ---- Buttons ---- */
+button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    background: var(--panel-soft);
+    color: var(--text);
+    transition: all 0.15s ease;
+}
+button:hover:not(:disabled) { border-color: var(--brass); color: var(--brass-soft); background: var(--panel); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button.primary { background: var(--brass); color: #1A1204; border: none; font-weight: 600; }
+button.primary:hover:not(:disabled) { background: var(--brass-soft); color: #1A1204; }
+button.full { width: 100%; }
+.btn-row { display: flex; gap: 10px; }
+.btn-row > button { flex: 1; }
+
+/* ---- File upload ---- */
+.upload-box {
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.upload-box input[type="file"] { display: block; margin: 10px auto 0; color: var(--text-muted); font-size: 13px; }
+
+/* ---- Chat ---- */
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 120px;
+}
+.msg {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    background: var(--panel);
+    border-left: 3px solid var(--teal);
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    font-size: 14.5px;
+}
+.msg.user { border-left-color: var(--brass); background: var(--panel-soft); }
+.msg .role { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+
+.chat-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+.chat-input-row textarea {
+    flex: 1;
+    resize: none;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    padding: 10px 12px;
+    min-height: 44px;
+    max-height: 140px;
+}
+.chat-input-row textarea:focus { outline: none; border-color: var(--brass); }
+
+/* ---- Envelope (pending send) card ---- */
+.envelope-card {
+    border: 1px dashed var(--brass);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: var(--panel-soft);
+    margin-bottom: 10px;
+}
+.envelope-card textarea {
+    width: 100%;
+    margin-top: 8px;
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    min-height: 140px;
+    resize: vertical;
+}
+
+/* ---- Ledger ---- */
+details.ledger { border: 1px solid var(--border); border-radius: 10px; background: var(--panel); padding: 6px 14px; }
+details.ledger summary { cursor: pointer; padding: 8px 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--text-muted); }
+.ledger-entry { margin-bottom: 10px; }
+
+/* ---- Misc ---- */
+.spinner {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid var(--text-muted);
+    border-top-color: var(--brass);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: -2px;
+    margin-right: 6px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hidden { display: none !important; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }

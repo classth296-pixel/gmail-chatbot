@@ -1,0 +1,33 @@
+# --- Web framework ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+jinja2==3.1.5
+
+# --- Config ---
+python-dotenv==1.0.1
+pydantic==2.10.4
+
+# --- Google OAuth / Gmail API ---
+google-auth==2.37.0
+google-auth-oauthlib==1.2.1
+google-api-python-client==2.156.0
+
+# --- LangChain / LangGraph / RAG ---
+# LangChain 1.0 split retrievers like EnsembleRetriever out into
+# langchain-classic, which is why these are left unpinned to patch level —
+# let pip resolve a mutually-compatible set within the 1.0.x line.
+langchain>=1.0.0
+langchain-core>=1.0.0
+langchain-community>=0.4.0
+langchain-classic>=1.0.0
+langchain-chroma>=0.2.0
+langchain-text-splitters>=1.0.0
+langchain-google-genai>=2.1.0
+langgraph>=0.6.0
+langgraph-checkpoint-sqlite>=2.0.0
+chromadb>=0.5.23
+rank_bm25==0.2.2
+
+# --- Data ---
+pandas==2.2.3

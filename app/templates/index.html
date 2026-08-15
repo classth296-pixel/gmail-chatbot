@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correspondent — Email Assistant</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="app-shell">
+
+    <div class="letterhead">
+        <div class="letterhead-seal">🖋️</div>
+        <div>
+            <div class="letterhead-title">Correspondent</div>
+            <div class="letterhead-subtitle">YOUR EMAIL ASSISTANT · SEARCH · SUMMARIZE · DRAFT · SEND</div>
+        </div>
+    </div>
+
+    <!-- Gmail connection -->
+    <div class="panel">
+        <div class="mono-meta" style="margin-bottom:10px;">GMAIL CONNECTION</div>
+
+        <div id="authAlert" class="alert hidden"></div>
+        <div id="credAlert" class="alert hidden"></div>
+
+        <div id="credBox">
+            <div class="alert alert-info">
+                Upload your Google OAuth <strong>credentials.json</strong> (Web application client type)
+                to get started. Get this from Google Cloud Console → APIs &amp; Services → Credentials,
+                with this exact redirect URI registered:
+                <div class="mono-meta" style="margin-top:6px;" id="redirectUriText"></div>
+            </div>
+            <div class="upload-box">
+                Drop credentials.json here
+                <input type="file" id="credFile" accept="application/json">
+            </div>
+        </div>
+
+        <div id="authBox" class="hidden">
+            <div class="alert alert-warning">Credentials uploaded — not yet authorized.</div>
+            <button class="primary full" id="connectBtn">🔑  Connect Gmail</button>
+        </div>
+
+        <div id="connectedBox" class="hidden">
+            <div class="alert alert-success">Gmail connected.</div>
+            <button id="disconnectBtn">↺  Disconnect / reset connection</button>
+        </div>
+    </div>
+
+    <div class="perforation"></div>
+
+    <!-- Control panel -->
+    <div id="syncAlert" class="alert hidden"></div>
+    <div class="btn-row">
+        <button id="fetchBtn" disabled>↻  Fetch new mail</button>
+        <button id="startBtn" class="primary" disabled>○  Start chatbot</button>
+    </div>
+
+    <div class="perforation"></div>
+
+    <!-- Chat -->
+    <div id="chatPlaceholder" class="alert alert-info">
+        Click <strong>Start chatbot</strong> above to begin — this loads your inbox index once per session.
+    </div>
+
+    <div id="chatSection" class="hidden">
+        <div class="panel">
+            <div class="btn-row" style="margin-bottom:10px;">
+                <button id="newChatBtn">＋ New chat</button>
+            </div>
+            <div id="chatWindow" class="chat-window"></div>
+            <div id="pendingBox" class="hidden"></div>
+            <div class="chat-input-row">
+                <textarea id="chatInput" rows="1" placeholder="Ask about your emails, or draft one..."></textarea>
+                <button class="primary" id="sendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="perforation"></div>
+
+    <!-- Ledger -->
+    <details class="ledger">
+        <summary>POSTMARK LOG · <span id="ledgerCount">0</span> entries</summary>
+        <div id="ledgerEntries"></div>
+        <div class="btn-row" style="margin-top:10px;">
+            <button id="exportLedgerBtn">↓  Export log</button>
+            <button id="clearLedgerBtn">⌫  Clear log</button>
+        </div>
+    </details>
+
+</div>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
